@@ -7,7 +7,7 @@ import { ProductInterface } from './interfaces/product-list.interface';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit{
+export class ProductListComponent{
   @Input() data!:any;
   products?:ProductInterface[]
   constructor(

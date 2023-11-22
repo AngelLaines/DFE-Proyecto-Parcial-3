@@ -1,7 +1,27 @@
 <div class="grid grid-cols-3">
-    <div *ngFor="let product of products">
-        <div>
-            <img src="../../../../assets/img/{{product.src}}" alt="{{product.name}}">
+    <div *ngFor="let product of products" class="m-[5px] mb-[50px] flex flex-col items-center rounded-lg shadow-lg pt-[10px] transition-all duration-200 hover:shadow-2xl">
+        <div class="w-[200px] h-[300px]">
+            <img class="w-full h-full" src="../../../../assets/img/{{product.src}}" alt="{{product.name}}">
+        </div>
+        <div class="px-[10px] py-[10px]">
+            <p>{{ product.name }}</p>
+        </div>
+        <div class="px-[10px]">
+            <p>Precio: {{ product.precio }}</p>
+        </div>
+        <div class="flex flex-row justify-between py-[10px]">
+            Plataforma:
+            <div class="flex flex-row">
+                <img class="w-[25px] h-[25px]" *ngFor="let platform of getValues(product.plataforma)" src="../../{{platform}}" alt="">
+            </div>
+        </div>
+        <div class="p-[10px]">
+            <button 
+                data-id = "{{product.id}}"
+                (click)="comprar($event)"
+                class="m-[10px] text-white hover:text-black bg-violet-500 px-4 py-2 rounded-lg hover:bg-violet-300 transition-all duration-150">
+                Comprar
+            </button>
         </div>
     </div>
 </div>
