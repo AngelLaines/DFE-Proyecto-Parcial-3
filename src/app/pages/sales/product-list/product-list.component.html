@@ -1,1 +1,36 @@
-<p>4 culon</p>
+<table class="text-center">
+    <thead class=" bg-purple-500">
+        <th class="w-[8rem] h-[40px]">
+            ID Venta
+        </th>
+        <th class="w-[8rem] h-[40px]">
+            Producto
+        </th>
+        <th class="w-[8rem] h-[40px]">
+            Cantidad
+        </th>
+        <th class="w-[8rem] h-[40px]">
+            Precio
+        </th>
+        <th class="w-[8rem] h-[40px]">
+            Fecha
+        </th>
+        <th class="w-[8rem] h-[40px]">
+
+        </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of data" class="border-b-[2px] transition-all duration-200 hover:bg-violet-100 border-violet-200">
+            <td class="h-[60px]">{{ row.id }}</td>
+            <td class="h-[60px]">{{ getName(row.idProducto,products!) }}</td>
+            <td class="h-[60px]">{{ row.cantidad }}</td>
+            <td class="h-[60px]">{{ row.precio }}</td>
+            <td class="h-[60px]">{{ row.fecha }}</td>
+            <td>
+                <button data-id="{{row.id}}" class="bg-red-400 hover:bg-red-300 transition-all duration-300 cursor-pointer px-3 py-2 rounded-lg">
+                    Eliminar
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { SummaryComponent } from './summary/summary.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ParentComponent } from './parent/parent.component';
+import { SharedModule } from '../../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -14,7 +16,9 @@ import { ParentComponent } from './parent/parent.component';
     ParentComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule,
+    HttpClientModule
   ],
   exports:[ParentComponent]
 })

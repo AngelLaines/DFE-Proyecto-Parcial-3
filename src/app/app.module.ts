@@ -5,6 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardModule } from './pages/dashboard/dashboard.module';
 import { SalesModule } from './pages/sales/sales.module';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { SharedModule } from './shared/shared.module';
+import { HomeModule } from './pages/home/home.module';
+import { CatalogsModule } from './pages/catalogs/catalogs.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +19,15 @@ import { SalesModule } from './pages/sales/sales.module';
     AppRoutingModule,
 
     DashboardModule,
-    SalesModule
+    SalesModule,
+    HomeModule,
+    CatalogsModule,
+
+    SharedModule,
+
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive
   ],
   providers: [],
   bootstrap: [AppComponent]
