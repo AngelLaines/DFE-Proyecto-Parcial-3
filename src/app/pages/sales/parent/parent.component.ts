@@ -55,6 +55,6 @@ export class ParentComponent implements OnInit{
       this.productosVendidos=cantidadVendida.reduce((a,b)=>a+b,0);
       this.precioTotal = +precioVenta.reduce((a,b)=>a+b,0).toFixed(2);
       console.log({cantidadVendida,precioVenta});
-    },1000);
+    },500);
   }
 }
