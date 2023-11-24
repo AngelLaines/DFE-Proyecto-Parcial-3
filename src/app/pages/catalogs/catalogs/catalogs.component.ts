@@ -16,4 +16,14 @@ export class CatalogsComponent {
       console.log(res);
     })
   }
+  
+  hasSend:boolean = false;
+  timeout:any;
+  saleAdded(){
+    this.hasSend = true;
+    if (this.timeout) clearTimeout(this.timeout);
+    this.timeout = setTimeout(()=>{
+        this.hasSend = false
+    },3000);
+  }
 }

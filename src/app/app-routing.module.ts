@@ -4,6 +4,7 @@ import { AboutComponent } from './pages/dashboard/about/about.component';
 import { ParentComponent } from './pages/sales/parent/parent.component';
 import { HomeComponent } from './pages/home/home/home.component';
 import { CatalogsComponent } from './pages/catalogs/catalogs/catalogs.component';
+import { NotFoundComponent } from './pages/not-found/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,9 @@ const routes: Routes = [
   },
   {
     path:'sales', component:ParentComponent
+  },
+  {
+    path:'**', component:NotFoundComponent
   }
 ];
 

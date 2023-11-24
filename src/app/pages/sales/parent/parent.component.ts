@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../../../shared/services/crud-service.service';
+import { SaleInterface } from '../product-list/interfaces/sale.interface';
 
 @Component({
   selector: 'app-parent',
@@ -7,16 +8,53 @@ import { CrudService } from '../../../shared/services/crud-service.service';
   styleUrls: ['./parent.component.scss']
 })
 export class ParentComponent implements OnInit{
-  data:any;
+  data!:SaleInterface[];
+  productosVendidos!:number;
+  precioTotal!:number;
   constructor(
     private crudService: CrudService
   ){
 
   }
+
+  deleteSale(e:any){
+    console.log(e);
+    const id:String = e.$event.target.id;
+    this.crudService.delete('sales/'+id).subscribe({next:(res)=>{
+      this.data = [...this.data.filter(sale => +id!==+sale.id!)];
+      console.log(this.data);
+      this.saleDeleted();
+    }});
+
+    e.cantidadProductosVendido.emit()
+  }
+
   ngOnInit(){
-    this.crudService.getAll('sales').subscribe((res)=>{
+    this.crudService.getAll<SaleInterface[]>('sales').subscribe((res)=>{
       this.data = res;
       console.log(res);
     })
+    
+    this.cantidadProductosVendido()
+  }
+
+  hasDeleted:boolean = false;
+  timeout:any;
+  saleDeleted(){
+    this.hasDeleted = true;
+    if (this.timeout) clearTimeout(this.timeout);
+    this.timeout = setTimeout(()=>{
+        this.hasDeleted = false
+    },3000);
+  }
+
+  cantidadProductosVendido(){
+    setTimeout(()=>{
+      const cantidadVendida = this.data.map(sale=>sale.cantidad);
+      const precioVenta = this.data.map(sale=>+sale.precio.split('$')[1]);
+      this.productosVendidos=cantidadVendida.reduce((a,b)=>a+b,0);
+      this.precioTotal = +precioVenta.reduce((a,b)=>a+b,0).toFixed(2);
+      console.log({cantidadVendida,precioVenta});
+    },1000);
   }
 }

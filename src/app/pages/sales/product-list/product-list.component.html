@@ -1,5 +1,5 @@
-<table class="text-center">
-    <thead class=" bg-purple-500">
+<table class="text-center" *ngIf="data.length>0">
+    <thead class=" bg-purple-500 text-white">
         <th class="w-[8rem] h-[40px]">
             ID Venta
         </th>
@@ -27,10 +27,14 @@
             <td class="h-[60px]">{{ row.precio }}</td>
             <td class="h-[60px]">{{ row.fecha }}</td>
             <td>
-                <button data-id="{{row.id}}" class="bg-red-400 hover:bg-red-300 transition-all duration-300 cursor-pointer px-3 py-2 rounded-lg">
+                <button data-id="{{row.id}}" (click)="deleteSale.emit({$event,cantidadProductosVendido})" class="bg-red-500 hover:bg-red-400 text-white transition-all duration-300 cursor-pointer px-3 py-2 rounded-lg">
                     Eliminar
                 </button>
             </td>
         </tr>
     </tbody>
 </table>
+
+<div *ngIf="data.length===0">
+    No hay informacion para mostrar
+</div>

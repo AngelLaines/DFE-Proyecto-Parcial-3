@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import {
   HttpClient,
   HttpHeaders,
-  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,12 +13,20 @@ export class CrudService {
   private headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }
 
-  public getAll<T>(route: string) {
+  public getAll<T>(route: string):Observable<T> {
     
     return this.http.get<T>(this.API_URL + route);
   }
 
-  public get() {
+  public get<T>(route:string):Observable<T> {
+    return this.http.get<T>(this.API_URL + route);
+  }
 
+  public postData<T>(route:string,data:object):Observable<T>{
+    return this.http.post<T>(this.API_URL + route,data);
+  }
+
+  public delete(route:string){
+    return this.http.delete(this.API_URL + route);
   }
 }
